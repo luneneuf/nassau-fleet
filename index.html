@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나사우 함대 — 실패의 유산</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── 변수 ── */
+    :root {
+      --bg:   #0d1117;
+      --gold: #c9a227;
+      --text: #e6edf3;
+      --muted:#8b949e;
+      --surface: #161b22;
+      --border: #30363d;
+    }
+
+    /* ── 리셋 ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 18px;
+      scroll-behavior: smooth;
+    }
+
+    body { min-height: 100vh; }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ── 레이아웃 ── */
+    .wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── 섹션 헤더 공통 ── */
+    .s-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .s-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .s-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .s-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 24px 0;
+      opacity: 0.5;
+    }
+
+    /* ── 이미지 래퍼 ── */
+    .img-wrap {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin: 32px 0;
+    }
+
+    .img-wrap img {
+      width: 100%;
+      height: auto;
+    }
+
+    .img-caption {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      opacity: 0.5;
+      padding: 10px 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── SECTION 00: HERO ── */
+    #hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    .hero-img .img-wrap {
+      aspect-ratio: 1 / 1;
+      margin: 0;
+    }
+
+    .hero-img .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── SECTION 03: MAP ── */
+    .map-iframe {
+      width: 100%;
+      height: 400px;
+      border: 1px solid var(--border);
+      display: block;
+      margin: 32px 0 0;
+    }
+
+    /* ── SECTION 05: 실패 원인 — 리스트 ── */
+    .failure-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 32px;
+    }
+
+    .failure-item {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .failure-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.6;
+      padding-top: 2px;
+    }
+
+    .failure-text h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .failure-text p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── SECTION 07: FOOTER ── */
+    footer {
+      padding: 56px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+    }
+
+    .footer-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .footer-years {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      opacity: 0.4;
+    }
+
+    .footer-copy {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      opacity: 0.3;
+      text-align: right;
+    }
+
+    /* ── 반응형 ── */
+    @media (max-width: 600px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-img {
+        order: -1;
+      }
+
+      section { padding: 56px 0; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-copy { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Section 00 HERO ── -->
+  <section id="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hero-tag">VOC 원정대 · 1623 — 1626</p>
+          <h1 class="hero-title">나사우 함대</h1>
+          <p class="hero-sub">Nassausche Vloot</p>
+          <p class="hero-desc">
+            은 수송선을 나포하고 태평양 연안에 식민지를 세우려 했던 네덜란드의 야망.
+            11척의 함선과 1,600명의 병사가 출항했다.
+            3년 후, 목표는 하나도 달성되지 않았다.
+          </p>
+        </div>
+        <div class="hero-img">
+          <div class="img-wrap">
+            <img src="images/nassau/amsterdam.png" alt="암스테르담호 — VOC 800톤 갈레온" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 01 배경 ── -->
+  <section id="background">
+    <div class="wrap">
+      <p class="s-eyebrow">Background · 01</p>
+      <h2 class="s-title">원정의 배경</h2>
+      <div class="s-divider"></div>
+      <!-- 본문 추가 예정 -->
+    </div>
+  </section>
+
+  <!-- ── Section 02 함대 ── -->
+  <section id="fleet">
+    <div class="wrap">
+      <p class="s-eyebrow">Order of Battle · 02</p>
+      <h2 class="s-title">나사우 함대 편성</h2>
+      <div class="s-divider"></div>
+      <!-- 본문 추가 예정 -->
+      <div class="img-wrap">
+        <img src="images/nassau/fleet-formation.png" alt="나사우 함대 편대 항해 — 1623년 출항" />
+        <p class="img-caption">1623년 4월 29일 — 고레 항을 떠나는 나사우 함대</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 03 지도 ── -->
+  <section id="map">
+    <div class="wrap">
+      <p class="s-eyebrow">Route · 03</p>
+      <h2 class="s-title">항로</h2>
+      <div class="s-divider"></div>
+      <!-- 본문 추가 예정 -->
+      <iframe
+        class="map-iframe"
+        src="nassau-fleet-map.html"
+        title="나사우 함대 항로 지도"
+        loading="lazy"
+        frameborder="0"
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- ── Section 04 칼라오 ── -->
+  <section id="callao">
+    <div class="wrap">
+      <p class="s-eyebrow">Callao Blockade · 04</p>
+      <h2 class="s-title">칼라오 봉쇄</h2>
+      <div class="s-divider"></div>
+      <!-- 본문 추가 예정 -->
+      <div class="img-wrap">
+        <img src="images/nassau/battle-callao.png" alt="칼라오 봉쇄 — 1624년 5월" />
+        <p class="img-caption">1624년 5월 8일 — 칼라오 앞바다, 98일 봉쇄 시작</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 05 실패 원인 ── -->
+  <section id="failure">
+    <div class="wrap">
+      <p class="s-eyebrow">Analysis · 05</p>
+      <h2 class="s-title">실패의 원인</h2>
+      <div class="s-divider"></div>
+      <!-- 본문 추가 예정 -->
+      <ul class="failure-list">
+        <li class="failure-item">
+          <span class="failure-num">01</span>
+          <div class="failure-text">
+            <h3>5일의 차이</h3>
+            <p><!-- 본문 추가 예정 --></p>
+          </div>
+        </li>
+        <li class="failure-item">
+          <span class="failure-num">02</span>
+          <div class="failure-text">
+            <h3>제독의 사망</h3>
+            <p><!-- 본문 추가 예정 --></p>
+          </div>
+        </li>
+        <li class="failure-item">
+          <span class="failure-num">03</span>
+          <div class="failure-text">
+            <h3>보급 한계</h3>
+            <p><!-- 본문 추가 예정 --></p>
+          </div>
+        </li>
+        <li class="failure-item">
+          <span class="failure-num">04</span>
+          <div class="failure-text">
+            <h3>스페인의 대응</h3>
+            <p><!-- 본문 추가 예정 --></p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Section 06 유산 ── -->
+  <section id="legacy">
+    <div class="wrap">
+      <p class="s-eyebrow">Historical Legacy · 06</p>
+      <h2 class="s-title">실패의 유산</h2>
+      <div class="s-divider"></div>
+      <!-- 본문 추가 예정 -->
+      <div class="img-wrap">
+        <img src="images/nassau/hermite-islands.jpg" alt="에르미트 제도 — 케이프혼 인근" />
+        <p class="img-caption">에르미트 제도 — 르 에르미트 제독의 이름이 남은 유일한 유산</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 07 FOOTER ── -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-title">NASSAUSCHE VLOOT</p>
+          <p class="footer-years">1623 — 1626 · 실패의 기록</p>
+        </div>
+        <p class="footer-copy">© 2026 chunsblog</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
