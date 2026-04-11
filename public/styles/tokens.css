@@ -1,0 +1,22 @@
+:root {
+  --background:                #091421;
+  --surface:                   #091421;
+  --surface-container-lowest:  #040f1b;
+  --surface-container-low:     #0f1a27;
+  --surface-container:         #15202d;
+  --surface-container-high:    #1c2a38;
+  --primary:                   #f5be52;
+  --primary-container:         #c4922a;
+  --primary-fixed:             #ffdea8;
+  --secondary:                 #72d5e5;
+  --tertiary:                  #ffb3af;
+  --on-surface:                #d8e3f5;
+  --outline-variant:           #4f4536;
+
+  --font-display: 'Cinzel', serif;
+  --font-body:    'Crimson Pro', serif;
+  --font-meta:    'Work Sans', sans-serif;
+
+  --section-gap: 120px;
+  --card-gap:    8px;
+}

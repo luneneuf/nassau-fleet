@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Button from '../components/Button.astro';
+import StatCard from '../components/StatCard.astro';
+---
+<BaseLayout title="나사우 함대: 실패의 유산">
+  <NavBar />
+
+  <!-- ① HERO -->
+  <section class="hero" style="background: var(--surface-container-lowest);">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow">VOC 원정대 · 1623 — 1626</p>
+          <h1 class="hero-title">나사우 함대<br/>실패의 유산</h1>
+          <p class="hero-subtitle">Nassausche Vloot</p>
+          <p class="hero-desc">
+            은 수송선을 나포하고 태평양 연안에 식민지를 세우려 했던 네덜란드의 야망.<br/>
+            11척의 함선과 1,600명의 병사가 호른 항을 떠났다.<br/>
+            3년 후, 목표는 하나도 달성되지 않았다.
+          </p>
+          <div class="hero-actions">
+            <Button href="#fleet">함대 살펴보기</Button>
+            <Button variant="ghost" href="#legacy">역사적 유산</Button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="pixel-frame">
+            <img src="/pixel/amsterdam.png" alt="암스테르담호 측면 프로필 — VOC 800톤 갈레온" />
+          </div>
+          <p class="hero-caption">암스테르담호 — VOC 800톤 갈레온, 42문 포</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② FLEET -->
+  <section id="fleet" style="background: var(--surface);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">ORDER OF BATTLE</p>
+        <h2 class="section-title">나사우 함대 편성</h2>
+        <p class="section-desc">
+          자크 르 에르미트 제독이 이끈 11척의 함대.
+          네덜란드 의회와 VOC가 공동 기획한 태평양 원정의 전모.
+          계획은 1619년부터 시작됐고, 4년의 준비 끝에 출항했다.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <StatCard label="출항일" value="1623.04.29" note="고레(Gorée) 항 출발" />
+        <StatCard label="함선" value="11척" note="기함 암스테르담호" />
+        <StatCard label="병력" value="1,600명" note="수병 + 육전대" />
+        <StatCard label="칼라오 봉쇄" value="98일" note="1624.05.08 — 08.14" />
+      </div>
+
+      <div class="fleet-split">
+        <div class="fleet-list">
+          <div class="fleet-list-header">
+            <span>함선명</span>
+            <span>규모</span>
+            <span>포문</span>
+            <span>비고</span>
+          </div>
+          <div class="fleet-row">
+            <span class="ship-name">Amsterdam</span>
+            <span>—</span>
+            <span>42문</span>
+            <span class="ship-note">기함 · 르 에르미트 승함</span>
+          </div>
+          <div class="fleet-row">
+            <span class="ship-name">Leiden</span>
+            <span>—</span>
+            <span>—</span>
+            <span class="ship-note">원정 일지에서 확인</span>
+          </div>
+          <div class="fleet-row">
+            <span class="ship-name">기타 9척</span>
+            <span>—</span>
+            <span>—</span>
+            <span class="ship-note">함명 기록 불완전</span>
+          </div>
+        </div>
+
+        <div class="fleet-visual">
+          <div class="pixel-frame pixel-frame--wide">
+            <img src="/pixel/fleet-formation.png" alt="나사우 함대 편대 항해 — 1623년 출항" />
+          </div>
+          <p class="hero-caption">1623년 4월 29일 — 고레 항을 떠나는 나사우 함대</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ BATTLE -->
+  <section id="battle" style="background: var(--surface-container-lowest);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">CALLAO BLOCKADE · 1624.05 — 08</p>
+        <h2 class="section-title">칼라오 봉쇄</h2>
+        <p class="section-desc">
+          태평양 연안 스페인 은 수송로의 핵심 항구. 나사우 함대는 98일간
+          칼라오를 봉쇄했으나 결정적 타격을 가하지 못했다.
+          그리고 봉쇄가 진행되는 동안, 제독이 죽었다.
+        </p>
+      </div>
+
+      <div class="battle-layout">
+        <div class="battle-visual">
+          <div class="pixel-frame pixel-frame--wide">
+            <img src="/pixel/battle-callao.png" alt="칼라오 봉쇄 — 1624년 5월" />
+          </div>
+        </div>
+
+        <div class="battle-text">
+          <div class="battle-block">
+            <p class="battle-date">1624년 5월 8일</p>
+            <h3 class="battle-heading">5일의 차이</h3>
+            <p class="battle-body">
+              칼라오 앞바다에 도착한 함대는 페루산 은을 실은 스페인 수송선단이
+              단 5일 전에 파나마로 떠났다는 사실을 알게 됐다. 대서양 횡단에서
+              누적된 지연이 원정의 핵심 목표를 처음부터 무력화했다.
+            </p>
+          </div>
+          <div class="battle-block">
+            <p class="battle-date">1624년 6월 2일</p>
+            <h3 class="battle-heading">제독의 죽음</h3>
+            <p class="battle-body">
+              이질로 쇠약해진 자크 르 에르미트 제독이 봉쇄 중 사망했다.
+              부제독 헨 스하펜함이 지휘권을 승계했으나, 이미 함대의 전략적
+              방향은 흔들리고 있었다.
+            </p>
+          </div>
+          <div class="battle-block">
+            <p class="battle-date">1624년 8월 28일</p>
+            <h3 class="battle-heading">과야킬의 실패</h3>
+            <p class="battle-body">
+              칼라오 봉쇄 해제 후 에콰도르 과야킬을 공격했으나 스페인 수비대에
+              막혀 25명의 사상자를 내고 퇴각했다. 이후 아카풀코, 괌, 몰루카스를
+              거쳐 1625년 바타비아에서 원정이 사실상 종료됐다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ LEGACY -->
+  <section id="legacy" style="background: var(--surface);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">HISTORICAL LEGACY</p>
+        <h2 class="section-title">실패의 의미</h2>
+        <p class="section-desc">
+          나사우 함대의 원정은 군사적으로는 실패였다. 그러나 그 실패는
+          17세기 제국주의 경쟁의 한계와 가능성을 동시에 드러낸다.
+        </p>
+      </div>
+
+      <div class="legacy-grid">
+        <div class="legacy-card">
+          <p class="legacy-icon">⚓</p>
+          <h3 class="legacy-heading">5일의 아이러니</h3>
+          <p class="legacy-body">
+            4년의 계획, 3년의 항해. 그 모든 것이 은 수송선의 출항 시각과
+            단 5일 차이였다. 역사상 가장 정밀하게 준비된 원정 중 하나가
+            가장 사소한 이유로 무너졌다.
+          </p>
+        </div>
+        <div class="legacy-card">
+          <p class="legacy-icon">☠</p>
+          <h3 class="legacy-heading">지휘관의 연쇄 사망</h3>
+          <p class="legacy-body">
+            르 에르미트 제독은 칼라오 봉쇄 중 이질로 사망했다.
+            지휘권을 이어받은 스하펜함 역시 바타비아 출항 직후 사망했다.
+            함대를 이끈 두 제독이 모두 귀환하지 못했다.
+          </p>
+        </div>
+        <div class="legacy-card">
+          <p class="legacy-icon">🌊</p>
+          <h3 class="legacy-heading">에르미트 제도</h3>
+          <p class="legacy-body">
+            원정의 유일한 지리적 유산. 1624년 2월 함대가 케이프혼 인근을
+            탐사하며 작성한 해도에서 발견된 군도는 오늘날 '에르미트 제도'로
+            불린다. 실패한 제독의 이름이 남극 근처 바위에 새겨졌다.
+          </p>
+        </div>
+      </div>
+
+      <div class="legacy-quote">
+        <blockquote>
+          "은 수송선은 단 닷새 전에 떠났다. 우리가 도착했을 때,
+          칼라오 항구에는 아무것도 없었다."
+        </blockquote>
+        <cite>— 요하네스 판 발베이크, 『나사우 함대 항해 일지』, 1626 (Journael vande Nassausche Vloot)</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ FOOTER -->
+  <footer style="background: var(--surface-container-lowest);">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <p class="footer-title">NASSAUSCHE VLOOT</p>
+          <p class="footer-sub">1623 — 1626 · 실패의 기록</p>
+        </div>
+        <div class="footer-right">
+          <p class="footer-note">
+            이 마이크로사이트는 17세기 네덜란드 해군 역사 연구를 바탕으로 제작되었습니다.
+          </p>
+          <p class="footer-copy">© 2026 chunsblog</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</BaseLayout>

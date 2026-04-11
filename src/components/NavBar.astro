@@ -1,0 +1,53 @@
+---
+---
+<nav class="navbar">
+  <div class="container">
+    <span class="navbar-title">NASSAUSCHE VLOOT</span>
+    <ul class="navbar-links">
+      <li><a href="#fleet">함대</a></li>
+      <li><a href="#battle">전투</a></li>
+      <li><a href="#legacy">유산</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: color-mix(in srgb, var(--surface) 30%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 20%, transparent);
+  }
+  .navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .navbar-title {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--primary);
+  }
+  .navbar-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .navbar-links a {
+    font-family: var(--font-meta);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--on-surface);
+    transition: color 0.2s;
+  }
+  .navbar-links a:hover {
+    color: var(--secondary);
+  }
+</style>
