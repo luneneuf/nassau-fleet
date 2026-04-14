@@ -16,6 +16,7 @@
       --muted:#8b949e;
       --surface: #161b22;
       --border: #30363d;
+      --font-display: 'Cinzel', serif;
     }
 
     /* ── 리셋 ── */
@@ -94,7 +95,10 @@
 
     .img-wrap img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
     .img-caption {
@@ -158,13 +162,119 @@
       margin: 0;
     }
 
-    .hero-img .img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    /* ── SECTION 01: 배경 — objectives ── */
+    .objectives {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
-    /* ── SECTION 03: MAP ── */
+    .objective {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .objective .num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.6;
+      padding-top: 2px;
+    }
+
+    .objective p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── SECTION 02: 함대 — 스탯 + 표 ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat .label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      opacity: 0.7;
+      text-transform: uppercase;
+    }
+
+    .stat .value {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .stat .note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    /* ── 공통 표 ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 28px 0;
+    }
+
+    .data-table thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 12px 14px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table tr:nth-child(even) td {
+      background: color-mix(in srgb, var(--surface) 50%, transparent);
+    }
+
+    .ship-name {
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 0.9em;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SECTION 03: 지도 ── */
     .map-iframe {
       width: 100%;
       height: 400px;
@@ -173,7 +283,37 @@
       margin: 32px 0 0;
     }
 
-    /* ── SECTION 05: 실패 원인 — 리스트 ── */
+    /* 타임라인 */
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin-top: 32px;
+    }
+
+    .timeline li {
+      display: flex;
+      gap: 1.5rem;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline .date {
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      min-width: 88px;
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .timeline .event {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ── SECTION 05: 실패 원인 ── */
     .failure-list {
       list-style: none;
       display: flex;
@@ -212,6 +352,74 @@
       font-size: 0.9rem;
       line-height: 1.75;
       color: var(--muted);
+    }
+
+    /* ── blockquote ── */
+    blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      color: var(--muted);
+      font-style: italic;
+      margin: 2rem 0;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    /* ── 참고 자료 ── */
+    .sources {
+      margin-bottom: 40px;
+    }
+
+    .sources h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .sources ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sources li {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--muted);
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .sources li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.5;
+    }
+
+    .series-link {
+      margin-bottom: 32px;
+    }
+
+    .series-link a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .series-link a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
     }
 
     /* ── SECTION 07: FOOTER ── */
@@ -269,6 +477,13 @@
       }
 
       .footer-copy { text-align: left; }
+
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+
+      .data-table th:last-child,
+      .data-table td:last-child { display: none; }
+
+      .timeline li { flex-direction: column; gap: 0.25rem; }
     }
   </style>
 </head>
@@ -280,11 +495,11 @@
       <div class="hero-inner">
         <div class="hero-text">
           <p class="hero-tag">VOC 원정대 · 1623 — 1626</p>
-          <h1 class="hero-title">나사우 함대</h1>
+          <h1 class="hero-title">나사우 함대<br>실패의 유산</h1>
           <p class="hero-sub">Nassausche Vloot</p>
           <p class="hero-desc">
-            은 수송선을 나포하고 태평양 연안에 식민지를 세우려 했던 네덜란드의 야망.
-            11척의 함선과 1,600명의 병사가 출항했다.
+            은 수송선을 나포하고 태평양 연안에 식민지를 세우려 했던 네덜란드의 야망.<br>
+            11척의 함선과 1,637명의 병사가 고레 항을 떠났다.<br>
             3년 후, 목표는 하나도 달성되지 않았다.
           </p>
         </div>
@@ -301,9 +516,31 @@
   <section id="background">
     <div class="wrap">
       <p class="s-eyebrow">Background · 01</p>
-      <h2 class="s-title">원정의 배경</h2>
+      <h2 class="s-title">시대의 야망</h2>
       <div class="s-divider"></div>
-      <!-- 본문 추가 예정 -->
+      <p class="s-body">
+        1609년, 네덜란드와 스페인은 12년 휴전에 서명했다. 전쟁을 멈춘 것이지 포기한 것이 아니었다.
+        휴전이 끝나는 1621년, 갓 설립된 서인도회사(WIC)는 기다리던 기회를 잡았다.
+        스페인 식민지 수탈 체계의 심장부 — 남미 태평양 연안의 은 선단 — 을 직접 타격하는 것이었다.
+        계획은 1619년부터 시작됐고, 4년의 준비 끝에 함대가 출항했다.
+      </p>
+      <div class="objectives">
+        <div class="objective">
+          <span class="num">01</span>
+          <p>카야오 봉쇄 → 스페인 은 선단 나포</p>
+        </div>
+        <div class="objective">
+          <span class="num">02</span>
+          <p>칠레 아라우칸족과 동맹 → 남미 서안 영구 기지 확보</p>
+        </div>
+        <div class="objective">
+          <span class="num">03</span>
+          <p>마닐라 갈레온 차단 → 태평양 무역로 장악</p>
+        </div>
+      </div>
+      <p class="s-body" style="margin-top: 28px;">
+        세 목표 중 하나도 달성되지 않았다.
+      </p>
     </div>
   </section>
 
@@ -311,9 +548,115 @@
   <section id="fleet">
     <div class="wrap">
       <p class="s-eyebrow">Order of Battle · 02</p>
-      <h2 class="s-title">나사우 함대 편성</h2>
+      <h2 class="s-title">11척, 1,637명</h2>
       <div class="s-divider"></div>
-      <!-- 본문 추가 예정 -->
+      <p class="s-body">
+        자크 르 에르미트 제독이 이끈 11척의 함대. 네덜란드 의회와 VOC가 공동 기획한
+        태평양 원정의 전모. 계획은 1619년부터 시작됐고, 4년의 준비 끝에 출항했다.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat">
+          <span class="label">출항일</span>
+          <span class="value">1623.04.29</span>
+          <span class="note">고레(Gorée) 항 출발</span>
+        </div>
+        <div class="stat">
+          <span class="label">함선</span>
+          <span class="value">11척</span>
+          <span class="note">기함 암스테르담호</span>
+        </div>
+        <div class="stat">
+          <span class="label">병력</span>
+          <span class="value">1,637명</span>
+          <span class="note">수병 + 육전대</span>
+        </div>
+        <div class="stat">
+          <span class="label">카야오 봉쇄</span>
+          <span class="value">98일</span>
+          <span class="note">1624.05.08 — 08.14</span>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>함선명</th>
+            <th>역할</th>
+            <th>대포</th>
+            <th>결말</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ship-name">Amsterdam</td>
+            <td>기함 · 르 에르미트 승함</td>
+            <td>42문</td>
+            <td>제일란트 귀환 (1626.9)</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Hollandia</td>
+            <td>부제독함 · 스하펜함 승함</td>
+            <td>42문</td>
+            <td>VOC 잔류 후 텍셀 귀환 (1628.6)</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Oranje</td>
+            <td>후방제독함 · 페르스호르 승함</td>
+            <td>40문</td>
+            <td>VOC 잔류 후 텍셀 귀환 (1628.9)</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Delft</td>
+            <td>전열함 · 비터 더 윗 함장</td>
+            <td>30문</td>
+            <td>향료 함대 부제독으로 귀환 (1626.9)</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Mauritius</td>
+            <td>전열함 · 아돌프 데커 승함</td>
+            <td>36문</td>
+            <td>원정 전 구간 참여</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Eendracht</td>
+            <td>전열함</td>
+            <td>28문</td>
+            <td>원정 참여</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Arend</td>
+            <td>전열함</td>
+            <td>26문</td>
+            <td>원정 참여</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Griffioen</td>
+            <td>전열함</td>
+            <td>28문</td>
+            <td>바타비아 복귀 (1626.4)</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Koning David</td>
+            <td>전열함</td>
+            <td>24문</td>
+            <td>원정 참여</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Hazewind</td>
+            <td>쾌속 야흐트</td>
+            <td>14문</td>
+            <td>원정 참여</td>
+          </tr>
+          <tr>
+            <td class="ship-name">Hoop</td>
+            <td>수송 요트</td>
+            <td>—</td>
+            <td>바타비아 현지 해체 (1627–28)</td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="img-wrap">
         <img src="images/nassau/fleet-formation.png" alt="나사우 함대 편대 항해 — 1623년 출항" />
         <p class="img-caption">1623년 4월 29일 — 고레 항을 떠나는 나사우 함대</p>
@@ -325,9 +668,12 @@
   <section id="map">
     <div class="wrap">
       <p class="s-eyebrow">Route · 03</p>
-      <h2 class="s-title">항로</h2>
+      <h2 class="s-title">3년간의 항로</h2>
       <div class="s-divider"></div>
-      <!-- 본문 추가 예정 -->
+      <p class="s-body">
+        네덜란드에서 아프리카 서안, 케이프 혼, 페루, 멕시코, 태평양, 동인도제도를 거쳐 귀환한
+        3년간의 항로. 총 이동 거리는 약 74,000킬로미터로 추산된다.
+      </p>
       <iframe
         class="map-iframe"
         src="nassau-fleet-map.html"
@@ -335,19 +681,117 @@
         loading="lazy"
         frameborder="0"
       ></iframe>
+      <ol class="timeline">
+        <li>
+          <span class="date">1623.04</span>
+          <span class="event">네덜란드 고레 출항 — 출항 직후 아렌드호 누수로 영국 기항, 수리</span>
+        </li>
+        <li>
+          <span class="date">1623.07–08</span>
+          <span class="event">아프리카 서안 — 카보베르데에서 이질 창궐. 시에라리온 기항까지 42명 사망</span>
+        </li>
+        <li>
+          <span class="date">1623.10</span>
+          <span class="event">아노봉 섬 기항 — 군의관 야코프 베헤르, 환자 7명 독살 혐의로 선상 참수</span>
+        </li>
+        <li>
+          <span class="date">1624.02</span>
+          <span class="event">르 메르 해협 — 야간족 원주민 야간 습격, 수병 17명 사망. 나사우 만 명명</span>
+        </li>
+        <li>
+          <span class="date">1624.05–08</span>
+          <span class="event">카야오 봉쇄 98일 — 은 선단 5일 차이로 놓침. 6월 2일 르 에르미트 제독 사망</span>
+        </li>
+        <li>
+          <span class="date">1624.11</span>
+          <span class="event">아카풀코 — 마닐라 갈레온 차단 실패. 태평양 횡단 시작</span>
+        </li>
+        <li>
+          <span class="date">1625.01</span>
+          <span class="event">괌 — 58일간의 횡단 끝 도착. 마닐라 봉쇄 계획 포기. 생존자 1,260명</span>
+        </li>
+        <li>
+          <span class="date">1625.03–11</span>
+          <span class="event">동인도제도 — VOC 요청으로 서세람 토벌전 투입. 정향나무 9만 그루 파괴</span>
+        </li>
+        <li>
+          <span class="date">1626.09</span>
+          <span class="event">네덜란드 귀환 — 직접 귀환 4척. 나머지 VOC 잔류 또는 현지 해체</span>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ── Section 04 칼라오 ── -->
+  <!-- ── Section 04 카야오 ── -->
   <section id="callao">
     <div class="wrap">
       <p class="s-eyebrow">Callao Blockade · 04</p>
-      <h2 class="s-title">칼라오 봉쇄</h2>
+      <h2 class="s-title">카야오, 98일의 실패</h2>
       <div class="s-divider"></div>
-      <!-- 본문 추가 예정 -->
+      <p class="s-body">
+        1624년 5월 8일, 함대는 드디어 목표에 도달했다. 리마의 외항 카야오.
+        그런데 은 선단은 불과 5일 전에 파나마로 출발한 뒤였다.
+        서아프리카의 이질이, 티에라델푸에고의 폭풍이 만들어낸 5일이었다.
+      </p>
+      <p class="s-body">
+        페루 부왕 디에고 페르난데스 데 코르도바는 함대 접근을 미리 알고 있었다.
+        2,700명의 방어군, 강화된 포대, 이미 이송된 은화.
+        네덜란드군은 98일 동안 카야오 앞바다를 떠나지 않았다.
+        상륙 시도는 강한 조류와 포화에 번번이 막혔다.
+      </p>
+      <p class="s-body">
+        6월 2일, 제독 자크 르 에르미트가 배 안에서 숨을 거뒀다.
+        카야오 앞바다 산 로렌소 섬에 묻혔다. 7월부터 이질에 시달린 끝이었다.
+        지휘권을 인수한 부제독 스하펜함은 8월 14일 봉쇄를 해제했다.
+        은 선단은 끝내 오지 않았다.
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>작전</th>
+            <th>날짜</th>
+            <th>결과</th>
+            <th>손실</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>카야오 봉쇄</td>
+            <td>1624.05.08–08.14</td>
+            <td>전략 실패 — 은 선단 없음</td>
+            <td>70명+ 사망</td>
+          </tr>
+          <tr>
+            <td>과야킬 1차 습격</td>
+            <td>1624.06</td>
+            <td>시가 방화 성공</td>
+            <td>35명 전사</td>
+          </tr>
+          <tr>
+            <td>앙콘 상륙</td>
+            <td>1624.08.27</td>
+            <td>완전 실패</td>
+            <td>28명+ 전사</td>
+          </tr>
+          <tr>
+            <td>과야킬 2차 습격</td>
+            <td>1624.08.28</td>
+            <td>참패</td>
+            <td>25명 전사</td>
+          </tr>
+          <tr>
+            <td>아카풀코 매복</td>
+            <td>1624.11</td>
+            <td>실패</td>
+            <td>4명 전사</td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="img-wrap">
         <img src="images/nassau/battle-callao.png" alt="칼라오 봉쇄 — 1624년 5월" />
-        <p class="img-caption">1624년 5월 8일 — 칼라오 앞바다, 98일 봉쇄 시작</p>
+        <p class="img-caption">카야오 항구 앞바다, 산 로렌소 섬 — 르 에르미트 제독이 잠든 곳</p>
       </div>
     </div>
   </section>
@@ -356,36 +800,45 @@
   <section id="failure">
     <div class="wrap">
       <p class="s-eyebrow">Analysis · 05</p>
-      <h2 class="s-title">실패의 원인</h2>
+      <h2 class="s-title">왜 실패했나</h2>
       <div class="s-divider"></div>
-      <!-- 본문 추가 예정 -->
+      <p class="s-body">
+        나사우 함대의 실패는 단 하나의 원인으로 설명되지 않는다. 다섯 가지 요인이 동시에 작용했다.
+      </p>
       <ul class="failure-list">
         <li class="failure-item">
           <span class="failure-num">01</span>
           <div class="failure-text">
-            <h3>5일의 차이</h3>
-            <p><!-- 본문 추가 예정 --></p>
+            <h3>정보 누설</h3>
+            <p>스페인은 함대 파견 정보를 사전에 입수했다. 카야오, 피스코, 아카풀코 — 모든 목표 항구의 방어가 강화된 상태였다.</p>
           </div>
         </li>
         <li class="failure-item">
           <span class="failure-num">02</span>
           <div class="failure-text">
-            <h3>제독의 사망</h3>
-            <p><!-- 본문 추가 예정 --></p>
+            <h3>지휘관의 조기 사망</h3>
+            <p>총사령관 르 에르미트는 출항 초기부터 이질에 감염됐다. 카야오 봉쇄의 98일을 병상에서 보낸 그는 결정적인 순간에 지휘할 수 없었다.</p>
           </div>
         </li>
         <li class="failure-item">
           <span class="failure-num">03</span>
           <div class="failure-text">
-            <h3>보급 한계</h3>
-            <p><!-- 본문 추가 예정 --></p>
+            <h3>질병 손실</h3>
+            <p>이질과 괴혈병이 항해 전 구간에 걸쳐 전력을 갉아먹었다. 출항 1,637명은 괌 도착 시 1,260명으로 줄어 있었다.</p>
           </div>
         </li>
         <li class="failure-item">
           <span class="failure-num">04</span>
           <div class="failure-text">
-            <h3>스페인의 대응</h3>
-            <p><!-- 본문 추가 예정 --></p>
+            <h3>상륙 능력 부재</h3>
+            <p>294문의 대포를 실은 함대였지만, 요새화된 해안에 상륙할 병력과 장비가 없었다. 해상 봉쇄만으로는 육지의 은을 빼앗을 수 없었다.</p>
+          </div>
+        </li>
+        <li class="failure-item">
+          <span class="failure-num">05</span>
+          <div class="failure-text">
+            <h3>동맹 실패</h3>
+            <p>칠레 아라우칸족과의 동맹을 통한 남미 거점 확보 계획은 시작도 못 했다. 기지 없는 원정대는 보급이 끊기면 퇴각할 수밖에 없었다.</p>
           </div>
         </li>
       </ul>
@@ -396,12 +849,36 @@
   <section id="legacy">
     <div class="wrap">
       <p class="s-eyebrow">Historical Legacy · 06</p>
-      <h2 class="s-title">실패의 유산</h2>
+      <h2 class="s-title">실패가 남긴 것</h2>
       <div class="s-divider"></div>
-      <!-- 본문 추가 예정 -->
+      <p class="s-body">
+        원정은 실패했지만, 두 가지는 살아남았다.
+      </p>
+      <p class="s-body">
+        하나는 지도다. 수학자 요하네스 판 발베크가 측량한 케이프 혼 해도,
+        르 에르미트의 이름을 딴 에르미트 제도, 함대의 이름을 딴 나사우 만 —
+        이 지명들은 오늘도 지도에 남아 있다.
+        208년 후, 찰스 다윈은 비글호를 타고 에르미트 제도에서 크리스마스를 보내며
+        선상 도서관에서 이 원정의 기록을 읽었다.
+      </p>
+      <p class="s-body">
+        다른 하나는 사람이다. 델프트호 함장 비터 더 윗은 나사우 함대에서 귀환한 뒤
+        1628년 피트 헤인의 기함장으로 스페인 은 선단 나포에 참여했다.
+        항해사 요하네스 판 발베크는 1634년 퀴라소를 정복하고 네덜란드령 안틸레스 초대 총독이 됐다.
+        실패한 원정이 배출한 두 인물이 이후 네덜란드 황금시대를 완성했다.
+      </p>
+      <p class="s-body">
+        나사우 함대가 카야오에서 은을 빼앗는 데 실패한 바로 그 방식을 통해,
+        네덜란드는 태평양 전략의 한계를 배웠다.
+        4년 후 피트 헤인은 카야오가 아닌 쿠바 마탄사스 만에서,
+        함대가 아닌 기습으로, 1,100만 길더의 은 선단을 단 하루에 나포했다.
+      </p>
+      <blockquote>
+        나사우 함대가 없었다면, 피트 헤인도 없었을지 모른다.
+      </blockquote>
       <div class="img-wrap">
         <img src="images/nassau/hermite-islands.jpg" alt="에르미트 제도 — 케이프혼 인근" />
-        <p class="img-caption">에르미트 제도 — 르 에르미트 제독의 이름이 남은 유일한 유산</p>
+        <p class="img-caption">케이프 혼 남서쪽 에르미트 제도 — 1624년 르 에르미트 제독의 이름에서 유래</p>
       </div>
     </div>
   </section>
@@ -409,12 +886,23 @@
   <!-- ── Section 07 FOOTER ── -->
   <footer>
     <div class="wrap">
+      <div class="sources">
+        <h3>참고 자료</h3>
+        <ul>
+          <li>Atlas of Mutual Heritage — <em>The Expedition of the Nassau Fleet</em> (atlasofmutualheritage.nl)</li>
+          <li>INAH Revista de Estudios Históricos — <em>The Lessons of the Dutch Blockade of Callao (1624)</em></li>
+          <li>James Burney — <em>Chronological History of Voyages in the South Sea</em>, Vol. III (1813) / Darwin's Beagle Library</li>
+        </ul>
+      </div>
+      <div class="series-link">
+        <a href="https://hugh-willoughby-1553.vercel.app">← 휴 윌로비 1553</a>
+      </div>
       <div class="footer-inner">
         <div>
           <p class="footer-title">NASSAUSCHE VLOOT</p>
           <p class="footer-years">1623 — 1626 · 실패의 기록</p>
         </div>
-        <p class="footer-copy">© 2026 chunsblog</p>
+        <p class="footer-copy">© 2026 chunsblog · 나사우 함대 아카이브</p>
       </div>
     </div>
   </footer>
