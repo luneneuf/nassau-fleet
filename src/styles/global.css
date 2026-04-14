@@ -102,6 +102,10 @@ section {
   object-fit: contain;
   image-rendering: pixelated;
 }
+.fleet-visual .pixel-frame img {
+  object-fit: cover;
+  object-position: center;
+}
 .pixel-placeholder {
   width: 100%;
   height: 100%;
