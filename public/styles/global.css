@@ -102,6 +102,9 @@ section {
   object-fit: contain;
   image-rendering: pixelated;
 }
+.fleet-visual .pixel-frame {
+  background: transparent;
+}
 .fleet-visual .pixel-frame img {
   object-fit: cover;
   object-position: center;
