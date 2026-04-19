@@ -1,0 +1,56 @@
+---
+import CallaoCountdown from '../interactive/CallaoCountdown.jsx';
+---
+<section id="battle" style="background: var(--surface-container-lowest);">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">CALLAO BLOCKADE · 1624.05 — 08</p>
+      <h2 class="section-title">칼라오 봉쇄</h2>
+      <p class="section-desc">
+        태평양 연안 스페인 은 수송로의 핵심 항구. 나사우 함대는 98일간
+        칼라오를 봉쇄했으나 결정적 타격을 가하지 못했다.
+        그리고 봉쇄가 진행되는 동안, 제독이 죽었다.
+      </p>
+    </div>
+
+    <div class="battle-layout">
+      <div class="battle-visual">
+        <div class="pixel-frame pixel-frame--wide">
+          <img src="/pixel/battle-callao.png" alt="칼라오 봉쇄 — 1624년 5월" />
+        </div>
+      </div>
+
+      <div class="battle-text">
+        <div class="battle-block">
+          <p class="battle-date">1624년 5월 8일</p>
+          <h3 class="battle-heading">5일의 차이</h3>
+          <p class="battle-body">
+            칼라오 앞바다에 도착한 함대는 페루산 은을 실은 스페인 수송선단이
+            단 5일 전에 파나마로 떠났다는 사실을 알게 됐다. 대서양 횡단에서
+            누적된 지연이 원정의 핵심 목표를 처음부터 무력화했다.
+          </p>
+        </div>
+        <div class="battle-block">
+          <p class="battle-date">1624년 6월 2일</p>
+          <h3 class="battle-heading">제독의 죽음</h3>
+          <p class="battle-body">
+            이질로 쇠약해진 자크 르 에르미트 제독이 봉쇄 중 사망했다.
+            부제독 헨 스하펜함이 지휘권을 승계했으나, 이미 함대의 전략적
+            방향은 흔들리고 있었다.
+          </p>
+        </div>
+        <div class="battle-block">
+          <p class="battle-date">1624년 8월 28일</p>
+          <h3 class="battle-heading">과야킬의 실패</h3>
+          <p class="battle-body">
+            칼라오 봉쇄 해제 후 에콰도르 과야킬을 공격했으나 스페인 수비대에
+            막혀 25명의 사상자를 내고 퇴각했다. 이후 아카풀코, 괌, 몰루카스를
+            거쳐 1625년 바타비아에서 원정이 사실상 종료됐다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <CallaoCountdown client:visible />
+  </div>
+</section>
