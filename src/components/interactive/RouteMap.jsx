@@ -27,15 +27,16 @@ const routeStages = [
     event: '직접 귀환 4척. 원정 종료.' },
 ];
 
-// 날짜변경선(±180°)을 서향으로 통과하는 두 지점 사이의 분할 좌표 계산
-function antimeridianSplit(a, b) {
-  // a에서 b로 서향 이동할 때 -180/+180 교차점 반환
-  const lngA = a[1];
-  const lngB = b[1] < lngA ? b[1] : b[1] - 360; // 서향 기준 b 경도
-  const frac = (-180 - lngA) / (lngB - lngA);
-  const lat = a[0] + (b[0] - a[0]) * frac;
-  return { west: [lat, -180], east: [lat, 180] };
-}
+// 경로 전체를 서향으로 연속 정규화한 좌표 배열
+// 각 지점을 이전 지점에서 ±180° 이내로 유지 → 날짜변경선 점프 없이 서향 연속
+const normalizedCoords = routeStages.reduce((acc, stage, i) => {
+  if (i === 0) return [[stage.coords[0], stage.coords[1]]];
+  const prevLng = acc[i - 1][1];
+  let lng = stage.coords[1];
+  while (lng - prevLng > 180) lng -= 360;   // 동향 점프 → 서향으로
+  while (prevLng - lng > 180) lng += 360;   // 과도한 서향 → 보정
+  return [...acc, [stage.coords[0], lng]];
+}, []);
 
 export default function RouteMap() {
   const mapRef = useRef(null);
@@ -94,25 +95,18 @@ export default function RouteMap() {
     markersRef.current = [];
     linesRef.current = [];
 
-    // 방문한 구간 그리기
+    // 방문한 구간 그리기 (정규화 좌표 사용 → 서향 연속, 날짜변경선 점프 없음)
     const lineStyle = { color: '#f5be52', weight: 2, opacity: 0.9 };
     for (let i = 0; i < currentStage && i < routeStages.length - 1; i++) {
-      const a = routeStages[i].coords;
-      const b = routeStages[i + 1].coords;
-
-      // 아카풀코(id 7) → 괌(id 8): 날짜변경선 서향 통과 — 분할 처리
-      if (i === 7) {
-        const { west, east } = antimeridianSplit(a, b);
-        linesRef.current.push(L.polyline([a, west], lineStyle).addTo(map));
-        linesRef.current.push(L.polyline([east, b], lineStyle).addTo(map));
-      } else {
-        linesRef.current.push(L.polyline([a, b], lineStyle).addTo(map));
-      }
+      linesRef.current.push(
+        L.polyline([normalizedCoords[i], normalizedCoords[i + 1]], lineStyle).addTo(map)
+      );
     }
 
-    // 마커 추가 (0 ~ currentStage)
+    // 마커 추가 (0 ~ currentStage) — 정규화 좌표로 배치, 타일은 동일 지형 렌더링
     for (let i = 0; i <= currentStage; i++) {
       const s = routeStages[i];
+      const nc = normalizedCoords[i];
       const icon = L.divIcon({
         className: '',
         html: `<div style="
@@ -123,14 +117,14 @@ export default function RouteMap() {
         "></div>`,
         iconAnchor: [i === currentStage ? 5 : 3, i === currentStage ? 5 : 3],
       });
-      const marker = L.marker(s.coords, { icon })
+      const marker = L.marker(nc, { icon })
         .addTo(map)
         .bindPopup(`<b style="font-family:serif">${s.name}</b><br/><small>${s.date}</small><br/>${s.event}`);
       markersRef.current.push(marker);
 
       if (i === currentStage) {
         marker.openPopup();
-        map.flyTo(s.coords, Math.max(2, map.getZoom()), { duration: 0.8 });
+        map.flyTo(nc, Math.max(2, map.getZoom()), { duration: 0.8 });
       }
     }
   }, [currentStage, ready]);
