@@ -27,11 +27,15 @@ const routeStages = [
     event: '직접 귀환 4척. 원정 종료.' },
 ];
 
-// 폴리라인 전용 좌표 — 괌(id 8)부터 경도 -360 오프셋으로 태평양 서향 강제
-// 마커는 routeStages.coords(실좌표) 그대로 사용
-const lineCoords = routeStages.map((s, i) =>
-  i >= 8 ? [s.coords[0], s.coords[1] - 360] : s.coords
-);
+// 날짜변경선(±180°)을 서향으로 통과하는 두 지점 사이의 분할 좌표 계산
+function antimeridianSplit(a, b) {
+  // a에서 b로 서향 이동할 때 -180/+180 교차점 반환
+  const lngA = a[1];
+  const lngB = b[1] < lngA ? b[1] : b[1] - 360; // 서향 기준 b 경도
+  const frac = (-180 - lngA) / (lngB - lngA);
+  const lat = a[0] + (b[0] - a[0]) * frac;
+  return { west: [lat, -180], east: [lat, 180] };
+}
 
 export default function RouteMap() {
   const mapRef = useRef(null);
@@ -90,13 +94,20 @@ export default function RouteMap() {
     markersRef.current = [];
     linesRef.current = [];
 
-    // 방문한 구간 그리기 (lineCoords: 태평양 서향 강제용 오프셋 좌표)
+    // 방문한 구간 그리기
+    const lineStyle = { color: '#f5be52', weight: 2, opacity: 0.9 };
     for (let i = 0; i < currentStage && i < routeStages.length - 1; i++) {
-      const line = L.polyline(
-        [lineCoords[i], lineCoords[i + 1]],
-        { color: '#f5be52', weight: 2, opacity: 0.9 }
-      ).addTo(map);
-      linesRef.current.push(line);
+      const a = routeStages[i].coords;
+      const b = routeStages[i + 1].coords;
+
+      // 아카풀코(id 7) → 괌(id 8): 날짜변경선 서향 통과 — 분할 처리
+      if (i === 7) {
+        const { west, east } = antimeridianSplit(a, b);
+        linesRef.current.push(L.polyline([a, west], lineStyle).addTo(map));
+        linesRef.current.push(L.polyline([east, b], lineStyle).addTo(map));
+      } else {
+        linesRef.current.push(L.polyline([a, b], lineStyle).addTo(map));
+      }
     }
 
     // 마커 추가 (0 ~ currentStage)
