@@ -27,6 +27,12 @@ const routeStages = [
     event: '직접 귀환 4척. 원정 종료.' },
 ];
 
+// 폴리라인 전용 좌표 — 괌(id 8)부터 경도 -360 오프셋으로 태평양 서향 강제
+// 마커는 routeStages.coords(실좌표) 그대로 사용
+const lineCoords = routeStages.map((s, i) =>
+  i >= 8 ? [s.coords[0], s.coords[1] - 360] : s.coords
+);
+
 export default function RouteMap() {
   const mapRef = useRef(null);
   const leafletRef = useRef(null);
@@ -84,10 +90,10 @@ export default function RouteMap() {
     markersRef.current = [];
     linesRef.current = [];
 
-    // 방문한 구간 그리기
+    // 방문한 구간 그리기 (lineCoords: 태평양 서향 강제용 오프셋 좌표)
     for (let i = 0; i < currentStage && i < routeStages.length - 1; i++) {
       const line = L.polyline(
-        [routeStages[i].coords, routeStages[i + 1].coords],
+        [lineCoords[i], lineCoords[i + 1]],
         { color: '#f5be52', weight: 2, opacity: 0.9 }
       ).addTo(map);
       linesRef.current.push(line);
